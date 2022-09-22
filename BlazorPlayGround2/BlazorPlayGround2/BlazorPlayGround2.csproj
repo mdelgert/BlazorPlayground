@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="34.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorPlayGround.Data\BlazorPlayGround.Data.csproj" />
+    <ProjectReference Include="..\BlazorPlayGround.Model\BlazorPlayGround.Model.csproj" />
+    <ProjectReference Include="..\BlazorPlayGround.ViewModel\BlazorPlayGround.ViewModel.csproj" />
+  </ItemGroup>
+
+</Project>

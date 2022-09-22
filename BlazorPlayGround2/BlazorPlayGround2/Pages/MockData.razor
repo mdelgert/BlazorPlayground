@@ -1,0 +1,42 @@
+﻿@page "/mockdata"
+@using Bogus
+@using BlazorPlayGround.Model
+@using Bogus.DataSets
+@using BlazorPlayGround.Data.UserMasters.Command
+@inject IUserMasterCommand UserMasterCommand
+
+<h3>MockData</h3>
+
+<button class="btn btn-primary" @onclick="CreateUsers">Create Users</button>
+
+@code {
+    private Task CreateUsers()
+    {
+        for (var i = 1; i <= 100; i++)
+        {
+            var faker = new Faker();
+            var phone = new PhoneNumbers();
+            var random = new Random();
+            
+            var userMaster = new UserMasterModel()
+            {
+                Address = faker.Person.Address.Street,
+                EmailId = faker.Person.Email,
+                FirstName = faker.Person.FirstName,
+                GenderId = (int) faker.Person.Gender,
+                LastName = faker.Person.LastName,
+                MiddleName = faker.Person.LastName,
+                MobileNo = phone.PhoneNumberFormat(1),
+                Status = random.Next(2) == 1,
+                UserId = 0,
+            };
+            
+            UserMasterCommand.Insert(userMaster);
+        }
+        return Task.CompletedTask;
+    }
+    
+//https://www.nuget.org/packages/Bogus
+//Install-Package Bogus
+
+}
